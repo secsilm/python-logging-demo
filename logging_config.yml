@@ -1,0 +1,29 @@
+version: 1
+
+formatters:
+  default:
+    format: "%(asctime)s - %(name)s - %(levelname)s: %(message)s"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: default
+
+  file:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: DEBUG
+    filename: log/app.log
+    when: midnight
+    encoding: utf-8
+    formatter: default
+
+loggers:
+  app:
+    handlers: [console, file]
+    level: DEBUG
+  package_a.module_a:
+    handlers: [console, file]
+    level: DEBUG
+
+disable_existing_loggers: false
